@@ -14,6 +14,7 @@ import keyboard
 
 LATER_SECS = 259200
 
+
 def main():
     threads = []
     posin = input("Hangi Tesis: ").lower()
@@ -38,11 +39,18 @@ def start(saha,posin,date):
     driver.get("https://online.spor.istanbul/uyegiris")
     wait_presence(driver, By.NAME, "txtSifre")
     tc_giris = driver.find_element(By.NAME, "txtTCPasaport")
-    sifre_giris = driver.find_element(By.NAME, "txtSifre")
-    giris_button = driver.find_element(By.NAME, "btnGirisYap")
     tc_giris.send_keys(TC)
-    sifre_giris.send_keys(SIFRE)
-    giris_button.click()
+    while True:
+        sifre_giris = driver.find_element(By.NAME, "txtSifre")
+        giris_button = driver.find_element(By.NAME, "btnGirisYap")
+        sifre_giris.send_keys(SIFRE)
+        giris_button.click()
+        wait_presence(driver, By.XPATH, "/html/body")
+        try:
+            driver.find_element(By.NAME, "txtSifre")
+            continue
+        except NoSuchElementException:
+            break
     closePopup(driver, True)
     wait_presence(driver, By.ID, "contacttab6")
     rentButton = driver.find_element(By.ID, "contacttab6")
@@ -77,7 +85,8 @@ def start(saha,posin,date):
     alert = driver.switch_to.alert
     alert.accept()
     wait_presence(driver, By.NAME, "ctl00$pageContent$txtCaptchaText")
-    driver.find_element(By.XPATH, "/html/body").send_keys(Keys.DOWN*5)
+    captcha_image = driver.find_element(By.NAME, "ctl00$pageContent$captchaImage")
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", captcha_image)
     keyboard.press_and_release('caps lock')
     captcha = driver.find_element(By.NAME, "ctl00$pageContent$txtCaptchaText")
     captcha.click()
@@ -85,7 +94,6 @@ def start(saha,posin,date):
     while len(captcha.get_attribute("value")) < 6:
         continue
     cart.click()
-    keyboard.press_and_release('caps lock')
     time.sleep(30)
 
 def rentTesis(driver,pos,date,saha,strtim):
@@ -146,11 +154,11 @@ def rentTesis(driver,pos,date,saha,strtim):
 
 def closePopup(driver, dont_show_again=False):
     wait_presence(driver, By.ID, "closeModal")
-    closePopup = driver.find_element(By.ID, "closeModal")
+    popup_close = driver.find_element(By.ID, "closeModal")
     dontshow = driver.find_element(By.CLASS_NAME, "form-check-input")
     if dont_show_again:
         dontshow.click()
-    closePopup.click()
+    popup_close.click()
 
 def wait_presence(driver, by:str, value:str, timeout=5):
     WebDriverWait(driver, timeout).until(
