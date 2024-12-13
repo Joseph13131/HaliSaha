@@ -85,6 +85,7 @@ def start(saha,posin,date):
     while len(captcha.get_attribute("value")) < 6:
         continue
     cart.click()
+    keyboard.press_and_release('caps lock')
     time.sleep(30)
 
 def rentTesis(driver,pos,date,saha,strtim):
