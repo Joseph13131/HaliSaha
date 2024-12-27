@@ -14,7 +14,7 @@ import json
 
 from process_captcha import ProcessCaptcha
 
-LATER_SECS = 259200 / 3
+LATER_SECS = 259200
 
 class Script:
     def __init__(self):
@@ -83,7 +83,7 @@ class Script:
         timelater = times + 3600
         tim = datetime.datetime.fromtimestamp(times).strftime("%H:%M")
         timlater = datetime.datetime.fromtimestamp(timelater).strftime("%H:%M")
-        strtim = "09:00 - 10:00" #tim + " - " + timlater
+        strtim = tim + " - " + timlater
         index = self.rentTesis(driver, posin, date, saha, strtim, thread_num)
         if not self.running_states[thread_num - 1]:  # killer check
             driver.quit()
