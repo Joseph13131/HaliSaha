@@ -26,7 +26,8 @@ class ProcessCaptcha:
             captchaString += ch
         return captchaString
 
-    def detect_chars(self, image:np.ndarray):
+    @staticmethod
+    def detect_chars(image:np.ndarray):
         chars = []
         patterned = []
         def find_pattern(row:int, col:int) -> list[tuple[int, int]]:
