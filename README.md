@@ -1,7 +1,5 @@
-<h3>asset teki login info dosyasına tc yi ve spor ist şifreni yaz</h3>
-<h3>programı çalıştırdıktan sonra tesisin adını, XX XX şekilde o gün içinde alacağın zamanı (19 00 mesela, en az 2-3 dakika önce programı çalıştır)</h3>
-<h3>ve alacağın sahanın saha listesinde kaçıncı sırada olduğunu yaz</h3>
-<h3>herşey düzgün giderse seni captcha yazmaya kadar götürecek</h3>
-<h3>orada captcha yı olabildiğince hızlı yaz</h3>
-<h3>düğmeye basmana gerek yok otomatik basıyo</h3>
-<h3>caps lock a da basma onu da kendisi yapıyo</h3>
+<h3>Asset teki login info dosyasına tc yi ve spor ist şifreni yaz</h3>
+<h3>Programı çalıştırdıktan sonra XX XX formatında alacağın saati, bir veya birden fazla saha denemelerine göre S(Single) veya M(Multiple) yaz.</h3>
+<h3>Sonra tesisin adını ve spor istanbul listesinde sahanın kaçıncı sırada olduğunu gir.</h3>
+<h3>M işaretlenmiş durumda saha seçimini bitirmek için x yaz, devam etmek için x dışında birşey yaz.</h3>
+<h3>Herşey düzgün giderse saha senin :)</h3>
